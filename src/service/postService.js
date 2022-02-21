@@ -34,6 +34,9 @@ const PostService = {
   },
   getPostsCount() {
     return API.get(`${BASE_PATH}/count`)
+  },
+  getPosts(authorId) {
+    return API.get(`${BASE_PATH}/author/${authorId}`)
   }
 }
 

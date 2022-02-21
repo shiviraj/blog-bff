@@ -16,7 +16,17 @@ const postController = () => {
       })
   })
   
-  router.get('/author/:postId', (req, res) => {
+  router.get('/author/:authorId', (req, res) => {
+    PostService.getPosts(req.params.authorId)
+      .then(({ data }) => res.send(data))
+      .catch((error) => {
+        const customError = { message: 'Failed to fetch all posts of author', authorId: req.params.authorId }
+        logger.logAPIError(req, error, customError)
+        handleError(error, res, customError)
+      })
+  })
+  
+  router.get('/:postId/author', (req, res) => {
     PostService.getPost(req.params.postId)
       .then(({ data }) => res.send(data))
       .catch((error) => {
@@ -26,7 +36,7 @@ const postController = () => {
       })
   })
   
-  router.get('/author/:postId/url-available/:url', (req, res) => {
+  router.get('/:postId/author/url-available/:url', (req, res) => {
     const { postId, url } = req.params
     PostService.isUrlAvailable(postId, url)
       .then(({ data }) => res.send(data))
@@ -37,7 +47,7 @@ const postController = () => {
       })
   })
   
-  router.put('/author/:postId', (req, res) => {
+  router.put('/:postId/author', (req, res) => {
     PostService.updatePost(req.params.postId, req.body)
       .then(({ data }) => res.send(data))
       .catch((error) => {
