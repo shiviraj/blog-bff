@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 })
 
 app.use((req, res, next) => {
-  const headers = { Authorization: req.headers.authorization }
+  const headers = { Authorization: req.headers.authorization || '' }
   httpContext.set('headers', headers)
   next()
 })
