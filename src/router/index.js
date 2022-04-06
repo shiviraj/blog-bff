@@ -6,6 +6,7 @@ const tagController = require('../controller/tagController')
 const oauthController = require('../controller/oauthController')
 const userController = require('../controller/userController')
 const commentController = require('../controller/commentController')
+const messageController = require('../controller/messageController')
 const mediaController = require('../controller/mediaController')
 
 const router = express.Router()
@@ -18,5 +19,6 @@ router.use('/oauth', oauthController)
 router.use('/media', mediaController)
 router.use('/users', userController)
 router.use('/comments', commentController)
+router.use('/messages', messageController)
 
 module.exports = router
